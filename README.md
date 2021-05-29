@@ -18,6 +18,10 @@ elf = ELF("./stack0")
 # executing the binary
 p = elf.process()
 ```
+
+- Script Output
+![img](assets/1-app-script.png)
+
 </p>
 </details>
 
