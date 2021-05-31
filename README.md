@@ -9,10 +9,21 @@ pip install pwntools
 
 ## This repo
 
+- I Cannot get a much on official writeups / from the documentation, so this for the people out there like me who require a clear understanding what and when things happen.
+- Hope this repo helps you
+- *Feel Free to contribute*
 - Focuses on using pwntools with the equivalent bash execution
 - In this repo, I included the bash equivalent to the code equivalent
 
-**THIS REPO DOSN'T PROVIDE WRITEUPS** to the excersises/ tasks involved
+```bash
+
+- BASH execution/ Operation (Image)
+- Code Snippet (explained in comments)
+- Code output (Image)
+
+```
+
+**THIS REPO DOSN'T PROVIDE WRITEUPS** to the exercises/ tasks involved
 
 - Refer from top to bottom to grasp an understanding
 - My Tutorial on pwntools is found in [usage.md](https://github.com/cyberwr3nch/pwntools_usage/blob/main/usage.md)
@@ -20,7 +31,7 @@ pip install pwntools
 > Yet to be updated and improved.....
 
 #### Links
-- Github Repository - [here](https://github.com/Gallopsled/pwntools)
+- GitHub Repository - [here](https://github.com/Gallopsled/pwntools)
 - Official Documentation - [here](https://docs.pwntools.com/)
 - Official Tutorial - [here](https://github.com/Gallopsled/pwntools-tutorial)
 - Other Writeups - [here](https://github.com/Gallopsled/pwntools-write-ups)
