@@ -161,3 +161,71 @@ print(str(p.recvall(), 'utf-8'))
 
 </p>
 </details>
+
+<details>
+	<summary>:heavy_check_mark: Connecting to ssh </summary>
+	<p>
+
+![img](assets/7-ssh-conn.png)
+
+- Code
+```py
+from pwn import *
+
+# create a ssh connection with ssh() and the following parameters, by default the port varible will have the value of 22, if the ssh service is running in its default port, the port argument is not necessary to specify
+session = ssh(host='narnia.labs.overthewire.org', port=2226, user='narnia0', password='narnia0')
+
+# the ssh() connects to the machine and gives some basic infomation about the machine
+```
+
+-Script Output
+![img](assets/7-ssh-script.png)
+</details>
+
+<details>
+	<summary>:heavy_check_mark: Executing commands in ssh</summary>
+	<p>
+
+![img](assets/8-ssh-cmd.png)
+
+- Code
+```py
+from pwn import *
+session = ssh(host='narnia.labs.overthewire.org', port=2226, user='narnia0', password='narnia0')
+
+# initialising the sh shell with the process()
+shell = session.process('sh')
+
+# sending commands to the shell
+shell.sendline("whoami")
+
+# reviving the decoding the output from the ssh connection
+print(str(shell.recvline(), 'utf-8'))
+```
+
+- Script Output
+![img](assets/8-ssh-cmd-script.png)
+</details>
+
+<details>
+	<summary>:heavy_check_mark: Interactive Shell </summary>
+	<p>
+
+![img](assets/9-int-shell.png)
+
+- Code
+```py
+from pwn import *
+from pwn import *
+session = ssh(host='narnia.labs.overthewire.org', port=2226, user='narnia0', password='narnia0')
+shell = session.process('sh')
+
+# instead of executing a single command, a ssh like shell will be obtained. In which command i/o is possible
+shell.interactive()
+
+```
+
+- Script Output
+![img](assets/9-int-shell-script.png)
+	</p>
+</details>
